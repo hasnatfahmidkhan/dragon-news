@@ -31,14 +31,14 @@ const Root = () => {
       </header>
       <Container>
         <main className="grid grid-cols-12 gap-7">
-          <aside className="col-span-3">
+          <aside className="col-span-3 sticky top-2 h-fit">
             <LeftAside />
           </aside>
           <section className="main col-span-6">
             <h2 className="font-semibold text-2xl mb-5">Dragon News Home</h2>
             {loading ? <Loader /> : <Outlet />}
           </section>
-          <aside className="col-span-3">
+          <aside className="col-span-3 sticky top-2 h-fit">
             <RightAside />
           </aside>
         </main>
