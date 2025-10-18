@@ -1,7 +1,19 @@
 import { NavLink, useNavigate } from "react-router";
-import user from "../../assets/user.png";
+import userIcon from "../../assets/user.png";
+import { use } from "react";
+import { AuthContext } from "../../Context/AuthContext";
 const Navbar = () => {
   const navigate = useNavigate();
+  const { user, logOut } = use(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        alert("Log out Successfully");
+      })
+      .catch((error) => {
+        alert(error.code, error.message);
+      });
+  };
   const links = (
     <>
       <li className="hover:text-black hover:underline">
@@ -17,7 +29,7 @@ const Navbar = () => {
   );
   return (
     <nav className="flex items-center justify-between py-6">
-      <div></div>
+      <div>{user && user.email}</div>
       <div>
         <ul
           id="navlinks"
@@ -27,13 +39,22 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="flex items-center gap-3">
-        <img src={user} alt="" />
-        <button
-          onClick={() => navigate("/auth/login")}
-          className="btn btn-primary px-7 text-lg font-normal"
-        >
-          Login
-        </button>
+        <img src={userIcon} alt="" />
+        {user ? (
+          <button
+            onClick={handleLogOut}
+            className="btn btn-primary px-7 text-lg font-normal"
+          >
+            LogOut
+          </button>
+        ) : (
+          <button
+            onClick={() => navigate("/auth/login")}
+            className="btn btn-primary px-7 text-lg font-normal"
+          >
+            Login
+          </button>
+        )}
       </div>
     </nav>
   );

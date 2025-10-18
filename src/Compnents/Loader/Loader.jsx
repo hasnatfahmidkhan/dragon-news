@@ -1,8 +1,8 @@
 import { FadeLoader } from "react-spinners";
 
-const Loader = () => {
+const Loader = ({ className }) => {
   return (
-    <div className="flex items-center justify-center h-1/5">
+    <div className={`flex items-center justify-center ${className}`}>
       <FadeLoader />
     </div>
   );

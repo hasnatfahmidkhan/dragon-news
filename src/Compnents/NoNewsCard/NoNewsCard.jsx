@@ -1,7 +1,7 @@
 import { FaNewspaper, FaRedo } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router";
 import { use } from "react";
-import { LoadingContext } from "../Context/LoadingContext/LoadingContext";
+import { LoadingContext } from "../../Context/LoadingContext/LoadingContext";
 
 const NoNewsCard = () => {
   const navigate = useNavigate();

@@ -6,6 +6,8 @@ import axios from "axios";
 import AuthLayout from "../Layouts/AuthLayout";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import NewsDetails from "../Pages/NewsDetails/NewsDetails";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,15 @@ const router = createBrowserRouter([
         loader: () => axios("/news.json"),
       },
     ],
+  },
+  {
+    path: "/news-details/:id",
+    element: (
+      <PrivateRoutes>
+        <NewsDetails />
+      </PrivateRoutes>
+    ),
+    loader: () => axios("/news.json"),
   },
   {
     path: "/auth",

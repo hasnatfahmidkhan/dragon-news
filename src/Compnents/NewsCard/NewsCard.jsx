@@ -77,8 +77,8 @@ const NewsCard = ({ news }) => {
       {/* Read More Link */}
       <div className="px-6 pb-4">
         <Link
-          to={"details-News"}
-          className="text-orange-500 text-sm font-semibold hover:text-orange-600 transition-colors"
+          to={`/news-details/${news.id}`}
+          className="text-orange-500 text-sm font-semibold hover:text-orange-600 hover:underline transition-colors"
         >
           Read More
         </Link>

@@ -24,7 +24,7 @@ const Root = () => {
     <div>
       <header>
         <Header />
-        <Container className={'py-8'}>
+        <Container className={"py-8"}>
           <LatestNews />
           <Navbar />
         </Container>
@@ -36,7 +36,7 @@ const Root = () => {
           </aside>
           <section className="main col-span-6">
             <h2 className="font-semibold text-2xl mb-5">Dragon News Home</h2>
-            {loading ? <Loader /> : <Outlet />}
+            {loading ? <Loader className={"h-1/5"} /> : <Outlet />}
           </section>
           <aside className="col-span-3 sticky top-2 h-fit">
             <RightAside />
