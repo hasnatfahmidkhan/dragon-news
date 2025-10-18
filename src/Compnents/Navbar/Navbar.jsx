@@ -1,6 +1,7 @@
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import user from "../../assets/user.png";
 const Navbar = () => {
+  const navigate = useNavigate();
   const links = (
     <>
       <li className="hover:text-black hover:underline">
@@ -27,7 +28,10 @@ const Navbar = () => {
       </div>
       <div className="flex items-center gap-3">
         <img src={user} alt="" />
-        <button className="btn btn-primary px-7 text-lg font-normal">
+        <button
+          onClick={() => navigate("/auth/login")}
+          className="btn btn-primary px-7 text-lg font-normal"
+        >
           Login
         </button>
       </div>

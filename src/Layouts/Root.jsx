@@ -24,7 +24,7 @@ const Root = () => {
     <div>
       <header>
         <Header />
-        <Container>
+        <Container className={'py-8'}>
           <LatestNews />
           <Navbar />
         </Container>
