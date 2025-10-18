@@ -1,0 +1,30 @@
+import { createBrowserRouter } from "react-router";
+import Root from "../Layouts/Root";
+import Home from "../Pages/Home/Home";
+import CategoryNews from "../Pages/CategoryNews/CategoryNews";
+import axios from "axios";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    hydrateFallbackElement: <p>Loader...</p>,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "category/:id",
+        element: <CategoryNews />,
+        loader: () => axios("/news.json"),
+      },
+    ],
+  },
+  {
+    path: "/*",
+    element: <h2 className="text-center py-10 text-2xl">Error 404</h2>,
+  },
+]);
+
+export default router;
