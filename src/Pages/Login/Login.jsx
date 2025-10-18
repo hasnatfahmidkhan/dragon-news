@@ -10,6 +10,7 @@ const Login = () => {
       <div className="divider"></div>
       <form className="flex items-center justify-center w-full">
         <fieldset className="fieldset gap-4 w-full">
+          {/* Email  */}
           <div className="space-y-1 w-full ">
             <label className="label text-base">Email</label>
             <input
@@ -18,6 +19,7 @@ const Login = () => {
               placeholder="Email"
             />
           </div>
+          {/* Password  */}
           <div className="space-y-1 w-full ">
             <label className="label text-base">Password</label>
             <input
@@ -26,14 +28,19 @@ const Login = () => {
               placeholder="Password"
             />
           </div>
+          {/* Forget Password  */}
           <div>
             <a className="link link-hover text-sm">Forgot password?</a>
           </div>
-          <button className="btn btn-primary mt-4">Login</button>
+          {/* Login  */}
+          <button className="btn btn-primary mt-4 text-base">Login</button>
           <div>
-            <p className="text-accent font-semibold text-base">
+            <p className="text-accent font-semibold text-sm text-center">
               Don't have an account?{" "}
-              <Link to={"/auth/register"} className="text-secondary hover:underline">
+              <Link
+                to={"/auth/register"}
+                className="text-secondary hover:underline"
+              >
                 Register
               </Link>
             </p>

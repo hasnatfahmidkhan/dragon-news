@@ -10,6 +10,7 @@ const Register = () => {
       <div className="divider"></div>
       <form className="flex items-center justify-center w-full">
         <fieldset className="fieldset gap-4 w-full">
+          {/* Name  */}
           <div className="space-y-1 w-full ">
             <label className="label text-base">Your Name</label>
             <input
@@ -18,6 +19,7 @@ const Register = () => {
               placeholder="Enter your name"
             />
           </div>
+          {/* Photo URL  */}
           <div className="space-y-1 w-full ">
             <label className="label text-base">Photo URL</label>
             <input
@@ -26,6 +28,7 @@ const Register = () => {
               placeholder="Enter your photo url"
             />
           </div>
+          {/* Email  */}
           <div className="space-y-1 w-full ">
             <label className="label text-base">Email</label>
             <input
@@ -34,6 +37,7 @@ const Register = () => {
               placeholder="Email"
             />
           </div>
+          {/* Password  */}
           <div className="space-y-1 w-full ">
             <label className="label text-base">Password</label>
             <input
@@ -42,6 +46,7 @@ const Register = () => {
               placeholder="Password"
             />
           </div>
+          {/* Terms and Condition  */}
           <div className="flex items-center gap-1">
             <label className="label text-accent text-sm">
               <input type="checkbox" className="checkbox checkbox-sm" />
@@ -52,9 +57,10 @@ const Register = () => {
               <Link className="font-semibold hover:underline">Conditions</Link>
             </label>
           </div>
-          <button className="btn btn-primary mt-4">Register</button>
+          {/* Register  */}
+          <button className="btn btn-primary mt-4 text-base">Register</button>
           <div>
-            <p className="text-accent font-semibold text-base">
+            <p className="text-accent font-semibold text-sm text-center">
               Already have an account?{" "}
               <Link
                 to={"/auth/login"}
