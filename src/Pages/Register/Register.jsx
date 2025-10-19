@@ -7,7 +7,7 @@ import validatePassword from "../../utility/validatePassword";
 const Register = () => {
   const { createUser, profileUpdata, setUser } = use(AuthContext);
   const navigate = useNavigate();
-  const [passError, setPassError] = useState("");
+  const [error, setError] = useState("");
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,10 +15,16 @@ const Register = () => {
     const password = form.password.value;
     const photo = form.photo.value;
     const name = form.name.value;
+    const terms = form.terms.checked;
 
     const isValid = validatePassword(password);
     if (isValid) {
-      setPassError(isValid);
+      setError(isValid);
+      return;
+    }
+
+    if (!terms) {
+      setError("please accept terms and conditions!");
       return;
     }
     // create user or register
@@ -94,19 +100,21 @@ const Register = () => {
               className="input w-full focus:outline-none "
               placeholder="Password"
             />
-            <p className="text-secondary">{passError}</p>
           </div>
           {/* Terms and Condition  */}
           <div className="flex items-center gap-1">
             <label className="label text-accent text-sm">
-              <input type="checkbox" className="checkbox checkbox-sm" />
-              Accept <Link className="font-semibold hover:underline">
-                Term
-              </Link>{" "}
+              <input
+                type="checkbox"
+                name="terms"
+                className="checkbox checkbox-sm"
+              />
+              Accept <Link className="font-semibold hover:underline">Term</Link>{" "}
               &{" "}
               <Link className="font-semibold hover:underline">Conditions</Link>
             </label>
           </div>
+          <p className="text-secondary">{error}</p>
           {/* Register  */}
           <button type="submit" className="btn btn-primary mt-4 text-base">
             Register
