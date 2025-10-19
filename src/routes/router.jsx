@@ -8,12 +8,13 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import NewsDetails from "../Pages/NewsDetails/NewsDetails";
 import PrivateRoutes from "./PrivateRoutes";
+import Loader from "../Compnents/Loader/Loader";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    hydrateFallbackElement: <p>Loader...</p>,
+    hydrateFallbackElement: <Loader />,
     children: [
       {
         index: true,
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
       </PrivateRoutes>
     ),
     loader: () => axios("/news.json"),
+    hydrateFallbackElement: <Loader />,
   },
   {
     path: "/auth",
