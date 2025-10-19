@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 
 const Login = () => {
-  const { signIn } = use(AuthContext);
+  const { signIn, setUser } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -13,10 +13,10 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     signIn(email, password)
-      .then(() => {
+      .then((userCredential) => {
         // Signed in
-        // const user = userCredential.user;
-        // setUser(user);
+        const user = userCredential.user;
+        setUser(user);
         navigate(location.state || "/");
         form.reset();
       })

@@ -25,7 +25,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const profileUpdata = (updateData) => {
-    return updateProfile(auth.currentUser, { updateData });
+    return updateProfile(auth.currentUser, updateData);
   };
 
   useEffect(() => {

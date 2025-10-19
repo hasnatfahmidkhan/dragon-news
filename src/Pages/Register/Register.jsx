@@ -1,10 +1,13 @@
-import { use } from "react";
+import { use, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
+import { toast } from "react-toastify";
+import validatePassword from "../../utility/validatePassword";
 
 const Register = () => {
   const { createUser, profileUpdata, setUser } = use(AuthContext);
   const navigate = useNavigate();
+  const [passError, setPassError] = useState("");
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -12,6 +15,13 @@ const Register = () => {
     const password = form.password.value;
     const photo = form.photo.value;
     const name = form.name.value;
+
+    const isValid = validatePassword(password);
+    if (isValid) {
+      setPassError(isValid);
+      return;
+    }
+    // create user or register
     createUser(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -21,7 +31,8 @@ const Register = () => {
             navigate("/");
           })
           .catch((error) => {
-            console.log(error);
+            // console.log(error);
+            toast.error(error.message);
             setUser(user);
           });
       })
@@ -83,6 +94,7 @@ const Register = () => {
               className="input w-full focus:outline-none "
               placeholder="Password"
             />
+            <p className="text-secondary">{passError}</p>
           </div>
           {/* Terms and Condition  */}
           <div className="flex items-center gap-1">

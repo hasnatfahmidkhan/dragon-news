@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import userIcon from "../../assets/user.png";
 import { use } from "react";
 import { AuthContext } from "../../Context/AuthContext";
@@ -29,7 +29,7 @@ const Navbar = () => {
   );
   return (
     <nav className="flex items-center justify-between py-6">
-      <div>{user && user.email}</div>
+      <div>{(user && user?.displayName) || user?.email}</div>
       <div>
         <ul
           id="navlinks"
@@ -39,21 +39,33 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="flex items-center gap-3">
-        <img src={userIcon} alt="" />
         {user ? (
-          <button
-            onClick={handleLogOut}
-            className="btn btn-primary px-7 text-lg font-normal"
-          >
-            LogOut
-          </button>
+          <>
+            <Link to={"/profile"}>
+              <img
+                className="w-12 h-12 object-cover rounded-full"
+                src={user.photoURL}
+                alt={user.displayName}
+              />
+            </Link>
+
+            <button
+              onClick={handleLogOut}
+              className="btn btn-primary px-7 text-lg font-normal"
+            >
+              Logout
+            </button>
+          </>
         ) : (
-          <button
-            onClick={() => navigate("/auth/login")}
-            className="btn btn-primary px-7 text-lg font-normal"
-          >
-            Login
-          </button>
+          <>
+            <img src={userIcon} alt="" />
+            <button
+              onClick={() => navigate("/auth/login")}
+              className="btn btn-primary px-7 text-lg font-normal"
+            >
+              Login
+            </button>
+          </>
         )}
       </div>
     </nav>
