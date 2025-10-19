@@ -1,9 +1,10 @@
 import { use } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 
 const Register = () => {
-  const { createUser } = use(AuthContext);
+  const { createUser, profileUpdata, setUser } = use(AuthContext);
+  const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -12,19 +13,21 @@ const Register = () => {
     const photo = form.photo.value;
     const name = form.name.value;
     createUser(email, password)
-      .then(() => {
-        // const user = userCredential.user;
-        // setUser(user);
+      .then((userCredential) => {
+        const user = userCredential.user;
+        profileUpdata({ displayName: name, photoURL: photo })
+          .then(() => {
+            setUser({ ...user, displayName: name, photoURL: photo });
+            navigate("/");
+          })
+          .catch((error) => {
+            console.log(error);
+            setUser(user);
+          });
       })
       .catch((err) => {
         alert(err.code, err.message);
       });
-    console.log({
-      email,
-      password,
-      photo,
-      name,
-    });
   };
   return (
     <div className="flex flex-col bg-base-100 w-full max-w-md shrink-0 shadow-2xl p-10 rounded-md">
