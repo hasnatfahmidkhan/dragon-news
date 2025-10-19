@@ -15,6 +15,7 @@ const ForgetPassword = () => {
       .then(() => {
         setEmailSent(false);
         toast.success("Sent you a mail, Please check your inbox!");
+        e.target.reset();
       })
       .catch((err) => {
         toast.error(err.message);

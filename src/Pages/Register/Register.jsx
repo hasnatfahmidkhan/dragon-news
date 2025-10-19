@@ -109,7 +109,7 @@ const Register = () => {
                 onClick={() => setShowpass(!showpass)}
                 className="absolute right-3.5 active:translate-y-0.5 transition duration-200 cursor-pointer z-50"
               >
-                {showpass ? <FaEye size={22} /> : <FaEyeSlash size={24} />}
+                {showpass ? <FaEyeSlash size={24} /> : <FaEye size={22} />}
               </span>
             </div>
           </div>
