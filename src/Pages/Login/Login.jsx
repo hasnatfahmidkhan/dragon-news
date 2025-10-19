@@ -1,12 +1,16 @@
-import { use } from "react";
+import { use, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
+import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const { signIn, setUser } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const [showpass, setShowpass] = useState(false);
 
+  // handle login
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -23,7 +27,7 @@ const Login = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorCode, errorMessage);
+        toast.error(errorCode, errorMessage);
       });
   };
   return (
@@ -38,30 +42,43 @@ const Login = () => {
       >
         <fieldset className="fieldset gap-4 w-full">
           {/* Email  */}
-          <div className="space-y-1 w-full ">
+          <div className="space-y-1 w-full">
             <label className="label text-base">Email</label>
             <input
               type="email"
               required
               name="email"
-              className="input w-full focus:outline-none "
+              className="input w-full focus:outline-none"
               placeholder="Email"
             />
           </div>
           {/* Password  */}
-          <div className="space-y-1 w-full ">
+          <div className="space-y-1 w-full">
             <label className="label text-base">Password</label>
-            <input
-              type="password"
-              required
-              name="password"
-              className="input w-full focus:outline-none "
-              placeholder="Password"
-            />
+            <div className="relative flex items-center">
+              <input
+                type={showpass ? "text" : "password"}
+                required
+                name="password"
+                className="input w-full focus:outline-none"
+                placeholder="Password"
+              />
+              <span
+                onClick={() => setShowpass(!showpass)}
+                className="absolute right-3.5 active:translate-y-0.5 transition duration-200 cursor-pointer z-50"
+              >
+                {showpass ? <FaEye size={22} /> : <FaEyeSlash size={24} />}
+              </span>
+            </div>
           </div>
           {/* Forget Password  */}
           <div>
-            <a className="link link-hover text-sm">Forgot password?</a>
+            <Link
+              to="/auth/forget-password"
+              className="link link-hover text-sm"
+            >
+              Forgot password?
+            </Link>
           </div>
           {/* Login  */}
           <button type="submit" className="btn btn-primary mt-4 text-base">

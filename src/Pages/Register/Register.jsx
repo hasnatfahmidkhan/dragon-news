@@ -3,11 +3,15 @@ import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import { toast } from "react-toastify";
 import validatePassword from "../../utility/validatePassword";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const { createUser, profileUpdata, setUser } = use(AuthContext);
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [showpass, setShowpass] = useState(false);
+
+  // handle register
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -93,13 +97,21 @@ const Register = () => {
           {/* Password  */}
           <div className="space-y-1 w-full ">
             <label className="label text-base">Password</label>
-            <input
-              type="password"
-              required
-              name="password"
-              className="input w-full focus:outline-none "
-              placeholder="Password"
-            />
+            <div className="relative flex items-center">
+              <input
+                type={showpass ? "text" : "password"}
+                required
+                name="password"
+                className="input w-full focus:outline-none"
+                placeholder="Password"
+              />
+              <span
+                onClick={() => setShowpass(!showpass)}
+                className="absolute right-3.5 active:translate-y-0.5 transition duration-200 cursor-pointer z-50"
+              >
+                {showpass ? <FaEye size={22} /> : <FaEyeSlash size={24} />}
+              </span>
+            </div>
           </div>
           {/* Terms and Condition  */}
           <div className="flex items-center gap-1">

@@ -9,6 +9,7 @@ import Register from "../Pages/Register/Register";
 import NewsDetails from "../Pages/NewsDetails/NewsDetails";
 import PrivateRoutes from "./PrivateRoutes";
 import Loader from "../Compnents/Loader/Loader";
+import ForgetPassword from "../Pages/ForgetPassword/ForgetPassword";
 
 const router = createBrowserRouter([
   {
@@ -49,11 +50,17 @@ const router = createBrowserRouter([
         path: "/auth/register",
         element: <Register />,
       },
+      {
+        path: "/auth/forget-password",
+        element: <ForgetPassword />,
+      },
     ],
   },
   {
     path: "/*",
-    element: <h2 className="text-center py-10 text-2xl">Error 404</h2>,
+    element: (
+      <h2 className="text-center py-10 text-2xl">Error 404 page not found</h2>
+    ),
   },
 ]);
 
